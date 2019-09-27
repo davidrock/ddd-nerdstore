@@ -15,18 +15,22 @@ namespace NerdStore.Catalogo.Domain
         public int Quantity { get; private set; }
         public string ImageUrl { get; private set; }
 
-        public Guid CategoryId { get; set; }
-        public Category Category { get; set; }
+        public Guid CategoryId { get; private set; }
+        public Category Category { get; private set; }
+        public Dimensions Dimensions { get; private set; }
 
-        public Product(string name, string description, bool active, decimal price, Guid categoryId, string imageUrl, DateTime createdAt)
+        public Product(string name, string description, bool active, decimal price, Guid categoryId, string imageUrl, Dimensions dimensions, DateTime createdAt)
         {
-            Name = name;
-            Description = description;
+            Name = name.Trim();
+            Description = description.Trim();
             Active = active;
             Price = price;
             CreatedAt = createdAt;
-            ImageUrl = imageUrl;
+            ImageUrl = imageUrl.Trim();
             CategoryId = categoryId;
+            Dimensions = dimensions;
+
+            Validate();
         }
 
         public void Activate() => Active = true;
@@ -39,12 +43,18 @@ namespace NerdStore.Catalogo.Domain
 
         public void ChangeDescription(string desc)
         {
+            AssertionConcern.AssertArgumentEmpty(desc, "Product's Description shall not be empty");
             Description = desc;
         }
 
         public void DebitStock(int quatity)
         {
-            if (quatity < 0) quatity *= -1;
+            if (quatity < 0)
+                quatity *= -1;
+
+            if (!CheckStock(quatity))
+                throw new DomainException("Insuficient Stock");
+
             Quantity -= quatity;
         }
 
@@ -60,7 +70,11 @@ namespace NerdStore.Catalogo.Domain
 
         public void Validate()
         {
-
+            AssertionConcern.AssertArgumentEmpty(Name, "Product's Name shall not be empty");
+            AssertionConcern.AssertArgumentEmpty(Description, "Product's Description shall not be empty");
+            AssertionConcern.AssertArgumentNotEquals(CategoryId, Guid.Empty, "Product's Id shall not be empty");
+            AssertionConcern.AssertArgumentLessEqual(Price, 0, "Product's Price shall not be empty");
+            AssertionConcern.AssertArgumentEmpty(ImageUrl, "Product's Image shall not be empty");
         }
     }
 }
