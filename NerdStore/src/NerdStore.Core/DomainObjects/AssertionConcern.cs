@@ -11,7 +11,7 @@ namespace NerdStore.Core.DomainObjects
         {
             if (!object1.Equals(object2))
             {
-                throw new InvalidOperationException(message);
+                throw new DomainException(message);
             }
         }
 
@@ -19,7 +19,7 @@ namespace NerdStore.Core.DomainObjects
         {
             if (boolValue)
             {
-                throw new InvalidOperationException(message);
+                throw new DomainException(message);
             }
         }
 
@@ -28,7 +28,7 @@ namespace NerdStore.Core.DomainObjects
             int length = stringValue.Trim().Length;
             if (length > maximum)
             {
-                throw new InvalidOperationException(message);
+                throw new DomainException(message);
             }
         }
 
@@ -37,7 +37,7 @@ namespace NerdStore.Core.DomainObjects
             int length = stringValue.Trim().Length;
             if (length < minimum || length > maximum)
             {
-                throw new InvalidOperationException(message);
+                throw new DomainException(message);
             }
         }
 
@@ -47,7 +47,7 @@ namespace NerdStore.Core.DomainObjects
 
             if (!regex.IsMatch(stringValue))
             {
-                throw new InvalidOperationException(message);
+                throw new DomainException(message);
             }
         }
 
@@ -55,7 +55,7 @@ namespace NerdStore.Core.DomainObjects
         {
             if (stringValue == null || stringValue.Trim().Length == 0)
             {
-                throw new InvalidOperationException(message);
+                throw new DomainException(message);
             }
         }
 
@@ -63,7 +63,7 @@ namespace NerdStore.Core.DomainObjects
         {
             if (string.IsNullOrEmpty(stringValue))
             {
-                throw new InvalidOperationException(message);
+                throw new DomainException(message);
             }
         }
 
@@ -71,7 +71,7 @@ namespace NerdStore.Core.DomainObjects
         {
             if (object1.Equals(object2))
             {
-                throw new InvalidOperationException(message);
+                throw new DomainException(message);
             }
         }
 
@@ -79,7 +79,7 @@ namespace NerdStore.Core.DomainObjects
         {
             if (object1 == null)
             {
-                throw new InvalidOperationException(message);
+                throw new DomainException(message);
             }
         }
 
@@ -87,7 +87,7 @@ namespace NerdStore.Core.DomainObjects
         {
             if (value < minimum || value > maximum)
             {
-                throw new InvalidOperationException(message);
+                throw new DomainException(message);
             }
         }
 
@@ -95,7 +95,7 @@ namespace NerdStore.Core.DomainObjects
         {
             if (value < minimum || value > maximum)
             {
-                throw new InvalidOperationException(message);
+                throw new DomainException(message);
             }
         }
 
@@ -103,7 +103,7 @@ namespace NerdStore.Core.DomainObjects
         {
             if (value < minimum || value > maximum)
             {
-                throw new InvalidOperationException(message);
+                throw new DomainException(message);
             }
         }
 
@@ -111,7 +111,7 @@ namespace NerdStore.Core.DomainObjects
         {
             if (value < minimum || value > maximum)
             {
-                throw new InvalidOperationException(message);
+                throw new DomainException(message);
             }
         }
 
@@ -119,7 +119,7 @@ namespace NerdStore.Core.DomainObjects
         {
             if (value < minimum || value > maximum)
             {
-                throw new InvalidOperationException(message);
+                throw new DomainException(message);
             }
         }
 
@@ -165,7 +165,7 @@ namespace NerdStore.Core.DomainObjects
         {
             if (!boolValue)
             {
-                throw new InvalidOperationException(message);
+                throw new DomainException(message);
             }
         }
 
@@ -173,7 +173,7 @@ namespace NerdStore.Core.DomainObjects
         {
             if (boolValue)
             {
-                throw new InvalidOperationException(message);
+                throw new DomainException(message);
             }
         }
 
@@ -181,7 +181,7 @@ namespace NerdStore.Core.DomainObjects
         {
             if (!boolValue)
             {
-                throw new InvalidOperationException(message);
+                throw new DomainException(message);
             }
         }
 
